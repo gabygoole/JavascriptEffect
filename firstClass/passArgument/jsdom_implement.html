@@ -4,55 +4,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .content {
-            width: 300px;
-            margin: 0 auto;
-        }
-        
-        #display {
-            width: 100px;
-            height: 100px;
-            background: #000;
-            margin: 0 auto;
-        }
-
-        .control {
+        p {
             text-align: center;
-            margin-bottom: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="control">
-            <button>变高</button>
-            <button>变色</button>
-            <button>变宽</button>
-            <button>隐藏</button>
-            <button>重置</button>
-        </div>
-        <div id="display">
-        </div>
-    </div>
-    <script>
-        function changeStyle(element,prop,value) {
-            element.style[prop] = value;
+<p><input type="text" value="四川省"></p>
+<p><input type="text" value="宜宾市"></p>
+<p><button>传参</button></p>
+<script>
+    function myFunc(val1,val2) {
+        alert(val1);
+        alert(val2);
+    }
+    window.onload = function () {
+        var button = document.getElementsByTagName("button")[0];
+        var inputs = document.getElementsByTagName("input");
+        button.onclick = function () {
+            myFunc(inputs[0].value,inputs[1].value)
         }
-        window.onload = function () {
-            var propArray = ["height",'backgroundColor',"width","display","display"];
-            var propValue = ["200px","blue","200px","none","block"];
-            var buttons = document.getElementsByTagName("button");
-            var screen = document.getElementById("display")
-            for(var i = 0; i < buttons.length; i++) {
-                buttons[i].index = i;
-                buttons[i].onclick = function () {
-                    if(this.index == buttons.length-1){//这里不能用i == buttons.length-1
-                        screen.style.cssText = "";
-                    }
-                    changeStyle(screen,propArray[this.index],propValue[this.index]);
-                }
-            }
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

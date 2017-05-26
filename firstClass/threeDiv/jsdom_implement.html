@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            background: black;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <p><button>点击div将变成红色</button></p>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+<script>
+    window.onload = function () {
+        var items = document.getElementsByClassName("item");
+        var button = document.getElementsByTagName("button")[0];
+
+        button.onclick = function () {
+            for(var index in items) {
+                items[index].style.backgroundColor = "red";
+            }
+        }
+    }
+</script>
+</body>
+</html>
