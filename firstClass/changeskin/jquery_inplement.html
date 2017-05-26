@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网页换肤</title>
+    <link rel="stylesheet" href="red.css">
+    <style>
+        #content {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        ul {
+            padding-left: 0px;
+        }
+
+        li {
+            list-style-type: none;
+            display: inline-block;
+        }
+
+        #skin li {
+            width: 6px;
+            height: 6px;
+            cursor: pointer;
+        }
+
+        #red,
+        #green,
+        #black{
+            border-width: 4px;
+            border-style: solid;
+        }
+
+        #red {
+            background: red;
+            border-color: red;
+        }
+
+        #green {
+            background: green;
+            border-color: green;
+        }
+
+        #black {
+            background: black;
+            border-color: black;
+        }
+
+        #skin .current {
+            background: white;
+        }
+
+    </style>
+</head>
+<body>
+<div id="content">
+    <ul id="skin">
+        <li id="red" class="current"></li>
+        <li id="green"></li>
+        <li id="black"></li>
+    </ul>
+    <ul id="category">
+        <li>新闻</li>
+        <li>娱乐</li>
+        <li>体育</li>
+        <li>电影</li>
+        <li>音乐</li>
+        <li>旅游</li>
+    </ul>
+</div>
+
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $skins = $("#skin li");
+        $link = $("link");
+
+        $skins.click(function () {
+            $skins.removeClass("current");
+            $(this).addClass("current");
+           $link.attr("href",$(this).attr("id") + ".css");
+        });
+    })
+</script>
+</body>
+</html>

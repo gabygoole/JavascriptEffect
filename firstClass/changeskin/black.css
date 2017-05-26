@@ -1,0 +1,12 @@
+#category li {
+    background: black;
+    color: white;
+    font-size: 14px;
+    padding: 6px 12px;
+    width: 62px;
+    text-align: center;
+}
+
+body {
+    background: grey;
+}
