@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #screen {
+            width: 100px;
+            height: 100px;
+            border: 10px solid black;
+            background-color: black;
+            margin: 0 auto;
+            cursor: crosshair;
+        }
+
+        #screen.hover {
+            border-color: red;
+            background-color: #FFDDDD;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="screen"></div>
+
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("#screen").mouseover(function () {
+            $(this).addClass("hover");
+        }).mouseout(function () {
+            $(this).removeClass("hover");
+        });
+    })
+</script>
+</body>
+</html>
