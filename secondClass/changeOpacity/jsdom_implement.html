@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img {
+            width: 128px;
+            height: 128px;
+            opacity: 0.3;
+        }
+
+        ul {
+            padding: 0 0 10px 10px;
+            border: 1px solid #ccc;
+            width: 700px;
+            overflow: auto;
+            margin: 0 auto;
+        }
+
+        li {
+            list-style-type: none;
+            border: 1px solid grey;
+            margin: 10px 10px 0 0;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="1.png" alt=""></li>
+    <li><img src="2.png" alt=""></li>
+    <li><img src="3.png" alt=""></li>
+    <li><img src="4.png" alt=""></li>
+    <li><img src="5.png" alt=""></li>
+    <li><img src="6.png" alt=""></li>
+    <li><img src="7.png" alt=""></li>
+    <li><img src="8.png" alt=""></li>
+    <li><img src="9.png" alt=""></li>
+    <li><img src="10.png" alt=""></li>
+</ul>
+<script>
+    window.onload = function () {
+        var items = document.getElementsByTagName("img");
+        for(var i = 0; i < items.length; i++) {
+            items[i].onmouseover = function () {
+                this.style.opacity = "1";
+            };
+
+            items[i].onmouseout = function () {
+                this.style.cssText = "";
+            };
+        }
+    }
+</script>
+</body>
+</html>
