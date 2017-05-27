@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content {
+            width: 250px;
+            margin: 0 auto;
+        }
+        label {
+            font-size: 12px;
+        }
+        #screen {
+            width: 150px;
+            height: 100px;
+            padding: 10px;
+            background-color: black;
+            margin: 0 auto;
+            color: white;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <p>
+        <label for="prop-name">属性名</label>
+        <input type="text" value="background" id="prop-name">
+    </p>
+
+    <p>
+        <label for="prop-value">属性值</label>
+        <input type="text" value="blue" id="prop-value">
+    </p>
+    <p>
+        <button>确定</button>
+        <button>重置</button>
+    </p>
+    <div id="screen">
+        输入相应的属性名和值，改变下面黑幕的样式
+    </div>
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+       $("button:first-child").click(function () {
+           $("#screen").css($("#prop-name").val(),$("#prop-value").val());
+       });
+
+       $("button:last-child").click(function () {
+           $("#screen").removeAttr("style");
+       })
+    });
+</script>
+</body>
+</html>

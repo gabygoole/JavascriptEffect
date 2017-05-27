@@ -4,51 +4,71 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #content {
-            width: 500px;
-            margin: 0 auto;
+        #overlay {
+            display: none;
+            background: grey;
+            opacity: 0.5;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
         }
 
-        #nums {
-            margin-bottom: 20px;
+        #window {
+            display: none;
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            top: 30%;
+            left: 35%;
+            border: 4px solid #f90;
+            background-color: white;
         }
 
-        label {
+        h1 {
+            background: #FC0;
+            text-align: right;
             font-size: 12px;
+            padding: 5px;
+            margin: 0;
         }
 
-        #sumbtn {
-            display: block;
+        span {
+            border: 1px solid #f90;
+            padding: 0px 3px;
+            color: #fc0;
+            background-color: white;
+            cursor: pointer;
         }
-
-        #result {
-            color: red;
-            font-size: 3em;
+        .bbtn {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<div id="content">
-    <input type="text" id="nums">
-    <label for="nums">输入数字求和，数字之间用半角","号分隔</label>
-    <button id="sumbtn">求和</button>
-    <strong id="result"></strong>
+<div class="bbtn">
+    <button>弹出层</button>
 </div>
+<!--要顶层显示的放后面-->
+<div id="overlay"></div>
+<div id="window">
+    <h1>
+        <span>×</span>
+    </h1>
+</div>
+
 <script src="../../jquery-3.1.1.min.js"></script>
 <script>
     $(function () {
-        $("#nums").keyup(function () {
-            this.value = this.value.replace(/[^(,)|(\d)]/,"");
+        $("button").click(function () {
+            $("#overlay").toggle();
+            $("#window").toggle();
         });
-        $("#sumbtn").click(function () {
-            var str = $("#nums").val();
-            var arr = str.split(",");
-            var sum = 0;
-            $.each(arr,function (index,value) {
-                sum += parseInt(value);
-            });
-            $("#result").text(sum);
-        })
+        $("span").click(function () {
+            $("#overlay").toggle();
+            $("#window").toggle();
+        });
     })
 </script>
 </body>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content {
+            width: 250px;
+            margin: 0 auto;
+        }
+        label {
+            font-size: 12px;
+        }
+        #screen {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 0 auto;
+            color: white;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+<p>
+    <label for="prop-name">属性名</label>
+    <input type="text" value="background" id="prop-name">
+</p>
+
+<p>
+    <label for="prop-value">属性值</label>
+    <input type="text" value="blue" id="prop-value">
+</p>
+<p>
+    <button>确定</button>
+    <button>重置</button>
+</p>
+    <div id="screen">
+        我的天啊我想日你妈卖批
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        var btn = document.getElementsByTagName("button");
+        var btnSure = btn[0];
+        var btnReset = btn[1];
+        var res = document.getElementById("screen");
+        var prop = document.getElementById("prop-name");
+        var propValue = document.getElementById("prop-value");
+        btnSure.onclick = function () {
+            res.style[prop.value] = propValue.value;
+        };
+
+        btnReset.onclick = function () {
+            res.style.cssText = "";
+        }
+    }
+</script>
+</body>
+</html>
