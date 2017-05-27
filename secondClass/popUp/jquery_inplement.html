@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        #nums {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 12px;
+        }
+
+        #sumbtn {
+            display: block;
+        }
+
+        #result {
+            color: red;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <input type="text" id="nums">
+    <label for="nums">输入数字求和，数字之间用半角","号分隔</label>
+    <button id="sumbtn">求和</button>
+    <strong id="result"></strong>
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("#nums").keyup(function () {
+            this.value = this.value.replace(/[^(,)|(\d)]/,"");
+        });
+        $("#sumbtn").click(function () {
+            var str = $("#nums").val();
+            var arr = str.split(",");
+            var sum = 0;
+            $.each(arr,function (index,value) {
+                sum += parseInt(value);
+            });
+            $("#result").text(sum);
+        })
+    })
+</script>
+</body>
+</html>
