@@ -24,6 +24,10 @@
             margin: 10px 10px 0 0;
             float: left;
         }
+
+        .current {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -44,11 +48,11 @@
         var items = document.getElementsByTagName("img");
         for(var i = 0; i < items.length; i++) {
             items[i].onmouseover = function () {
-                this.style.opacity = "1";
+                this.className = "current";
             };
 
             items[i].onmouseout = function () {
-                this.style.cssText = "";
+                this.className = "";
             };
         }
     }

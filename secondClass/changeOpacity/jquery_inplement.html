@@ -24,6 +24,9 @@
             margin: 10px 10px 0 0;
             float: left;
         }
+        .current {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -43,9 +46,9 @@
 <script>
     $(function () {
         $("img").mouseover(function () {
-            $(this).css("opacity","1");
+            $(this).addClass("current");
         }).mouseout(function () {
-            $(this).removeAttr("style");
+            $(this).removeClass("current");
         });
     })
 </script>
