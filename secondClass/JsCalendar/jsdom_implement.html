@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #outer {
+            width: 240px;
+            margin: 0 auto;
+            background-color: #eaeaea;
+            padding: 0 0 10px 10px;
+        }
+
+        ul{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            width: 40px;
+            height: 40px;
+            margin: 10px 10px 0 0;
+            display: inline-block;
+            list-style-type: none;
+            background-color: #424242;
+            text-align: center;
+            color: white;
+            padding: 5px;
+        }
+
+        li strong {
+            display: block;
+        }
+
+        .current {
+            background-color: #FFDDDD;
+            color: hotpink;
+        }
+
+        #description {
+            border: 1px solid white;
+            width: 210px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        h2 {
+            font-size: 13px;
+            margin-top: 0;
+        }
+        p  {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="calendar">
+            <ul>
+                <li class="current"><strong>1</strong>JAN</li>
+                <li><strong>2</strong>FER</li>
+                <li><strong>3</strong>MAR</li>
+                <li><strong>4</strong>APR</li>
+                <li><strong>5</strong>MAY</li>
+                <li><strong>6</strong>JUN</li>
+                <li><strong>7</strong>JUL</li>
+                <li><strong>8</strong>AUG</li>
+                <li><strong>9</strong>SEP</li>
+                <li><strong>10</strong>OCT</li>
+                <li><strong>11</strong>NOV</li>
+                <li><strong>12</strong>DEC</li>
+            </ul>
+        </div>
+        <div id="description">
+            <h2><strong>1</strong>月节日</h2>
+            <p>元旦：1月1日至3日放假三天。</p>
+        </div>
+    </div>
+<script>
+    window.onload = function () {
+        var months = document.getElementsByTagName("li");
+        var oArray = [
+            "元旦：1月1日至3日放假三天。",
+            "春节：2月2日至8日放假7天。",
+            "妇女节：3月8日妇女节，与我无关。",
+            "清明节：4月3日至5日放假3天",
+            "劳动节：4月30日至5月2日放假3天。",
+            "端午节：6月4日至6日放假3天。",
+            "小暑：7月7日小暑。不放假。",
+            "七夕节：8月6日七夕节。不放假。",
+            "中秋节：9月10日至12日放假3天。",
+            "国庆节：10月1日至7日放假7天。",
+            "立冬：11月8日立冬。不放假。",
+            "艾滋病日:12月1日<br />废除奴隶制国际日:12月2日。"
+        ];
+        var nowMonth = document.getElementById("description").getElementsByTagName("strong")[0];
+        var description = document.getElementsByTagName("p")[0];
+        for(var i =0; i < months.length; i++) {
+            months[i].index = i;
+            months[i].onmouseover = function () {
+                for(var j = 0; j < months.length; j++)  months[j].className = "";
+                this.className = "current";
+                description.innerHTML = oArray[this.index];
+                nowMonth.innerHTML = this.index + 1;
+            }
+        }
+    }
+</script>
+</body>
+</html>
