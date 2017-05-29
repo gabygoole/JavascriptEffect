@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img {
+            position: absolute;
+            display: none;
+            width: 140px;
+            height: 140px;
+            border:1px solid black;
+            top: -6px;
+            left: -5px;
+            background-color: #cccccc;
+        }
+
+        .current {
+            z-index: 1;
+        }
+        ul {
+            padding: 0 0 10px 10px;
+            border: 1px solid #ccc;
+            width: 700px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        li {
+            position: relative;
+            width: 128px;
+            height: 128px;
+            list-style-type: none;
+            border: 1px solid grey;
+            margin: 10px 10px 0 0;
+            float: left;
+            background-color: #f0f0f0;
+            text-align: center;
+            color: #666;
+            cursor: crosshair;
+        }
+        a {
+            text-decoration: none;
+            line-height: 130px;
+            font-size: 17px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <a>Go Team</a>
+        <img src="../changeOpacity/1.png" alt="">
+    </li>
+    <li><a>Fire</a><img src="../changeOpacity/2.png" alt=""></li>
+    <li><a>band Aid</a><img src="../changeOpacity/3.png" alt=""></li>
+    <li><a>hook</a><img src="../changeOpacity/4.png" alt=""></li>
+    <li><a>bagpack</a><img src="../changeOpacity/5.png" alt=""></li>
+    <li><a>telescope</a><img src="../changeOpacity/6.png" alt=""></li>
+    <li><a>tent</a><img src="../changeOpacity/7.png" alt=""></li>
+    <li><a>guitar</a><img src="../changeOpacity/8.png" alt=""></li>
+    <li><a>envelope</a><img src="../changeOpacity/9.png" alt=""></li>
+    <li><a>write envelope</a><img src="../changeOpacity/10.png" alt=""></li>
+</ul>
+<script>
+    window.onload = function () {
+        var lis = document.getElementsByTagName("li");
+        for(var i = 0; i < lis.length; i++){
+            lis[i].onmouseover = function () {
+                this.className = "current";
+                this.getElementsByTagName("img")[0].style.display = "block";
+            }
+            lis[i].onmouseout = function () {
+                this.className = "";
+                this.getElementsByTagName("img")[0].style.display = "none";
+            }
+        }
+    }
+</script>
+</body>
+</html>
