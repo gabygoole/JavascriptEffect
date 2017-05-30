@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content {
+            width: 100px;
+            margin: 0 auto;
+            border: 1px solid black;
+            background-color: #fafafa;
+            font-size: 12px;
+            padding: 10px;
+        }
+        p:first-child {
+            border-bottom: 1px solid black;
+            margin-top: 0px;
+            padding-bottom: 5px;
+        }
+        input,input,a {
+            vertical-align: middle;
+        }
+        p:first-child > label {
+            font-weight: 700;
+        }
+        a {
+            text-decoration: none;
+            color: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <p>
+            <input type="checkbox" id="selection">
+            <label for="selection">全选</label>
+            <a href="#">反选</a>
+        </p>
+        <p><input type="checkbox"><label>选项一</label></p>
+        <p><input type="checkbox"><label>选项二</label></p>
+        <p><input type="checkbox"><label>选项三</label></p>
+        <p><input type="checkbox"><label>选项四</label></p>
+        <p><input type="checkbox"><label>选项五</label></p>
+        <p><input type="checkbox"><label>选项六</label></p>
+        <p><input type="checkbox"><label>选项七</label></p>
+        <p><input type="checkbox"><label>选项八</label></p>
+        <p><input type="checkbox"><label>选项九</label></p>
+        <p><input type="checkbox"><label>选项十</label></p>
+    </div>
+<script>    
+    window.onload = function () {
+        var inputBox = document.getElementsByTagName("input");
+        var reverse = document.getElementsByTagName("a")[0];
+        var state = document.getElementsByTagName("label")[0];
+
+        function isCheckAll() {
+            for(var i = 1 , n = 0; i < inputBox.length; i++) {
+                inputBox[i].checked && n++;
+            }
+            inputBox[0].checked = n == inputBox.length - 1;
+            state.innerHTML = inputBox[0].checked ? "全不选" : "全选";
+        }
+        //全选/全不选
+        inputBox[0].onclick  = function () {
+            for(var i = 1; i < inputBox.length; i++){
+                inputBox[i].checked = this.checked;
+            }
+            isCheckAll();
+        }
+        //反选
+        reverse.onclick = function () {
+            for(var i = 1; i < inputBox.length; i++){
+                inputBox[i].checked =  !inputBox[i].checked;
+            }
+            isCheckAll();
+        }
+        //每点击一次就及时检查
+        for(var i = 1; i < inputBox.length; i++){
+            inputBox[i].onclick = function () {
+                isCheckAll();
+            }
+        }
+    }
+</script>
+</body>
+</html>

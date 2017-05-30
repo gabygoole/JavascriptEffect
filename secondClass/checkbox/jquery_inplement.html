@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #content {
+            width: 100px;
+            margin: 0 auto;
+            border: 1px solid black;
+            background-color: #fafafa;
+            font-size: 12px;
+            padding: 10px;
+        }
+        p:first-child {
+            border-bottom: 1px solid black;
+            margin-top: 0px;
+            padding-bottom: 5px;
+        }
+        input,input,a {
+            vertical-align: middle;
+        }
+        p:first-child > label {
+            font-weight: 700;
+        }
+        a {
+            text-decoration: none;
+            color: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <p>
+        <input type="checkbox" id="selection">
+        <label for="selection">全选</label>
+        <a href="#">反选</a>
+    </p>
+    <p><input type="checkbox"><label>选项一</label></p>
+    <p><input type="checkbox"><label>选项二</label></p>
+    <p><input type="checkbox"><label>选项三</label></p>
+    <p><input type="checkbox"><label>选项四</label></p>
+    <p><input type="checkbox"><label>选项五</label></p>
+    <p><input type="checkbox"><label>选项六</label></p>
+    <p><input type="checkbox"><label>选项七</label></p>
+    <p><input type="checkbox"><label>选项八</label></p>
+    <p><input type="checkbox"><label>选项九</label></p>
+    <p><input type="checkbox"><label>选项十</label></p>
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        function isCheckAll() {
+            if($("input:gt(0)").filter(":not(:checked)").length > 0) {
+                $("input:eq(0)").prop("checked",false);
+                $("label:eq(0)").text("全选");
+            } else {
+                $("input:eq(0)").prop("checked",true);
+                $("label:eq(0)").text("全不选");
+            }
+        }
+        //全选/全不选
+        $("input:eq(0)").click(function () {
+            $("input:gt(0)").prop("checked",this.checked);
+        });
+        //反选
+        $("a").click(function () {
+           $("input:gt(0)").each(function () {
+               this.checked = !this.checked;//each函数里的$(this)代表被遍历的每一个对象
+           });
+           isCheckAll();
+        });
+        //
+        $("input:gt(0)").click(function () {
+            isCheckAll();
+        })
+    })
+</script>
+</body>
+</html>
