@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="text"> + <input type="text"> = <span id="res">?</span>
+<button>求和</button>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    window.onload = function () {
+        var inputs = document.getElementsByTagName("input");
+        var res = document.getElementById("res");
+        btn = document.getElementsByTagName("button")[0];
+        for(var i =0; i < 2; i++) {
+            inputs[i].onkeyup = function () {
+                this.value = this.value.replace(/[^(\d)]/,"");
+            }
+        }
+        btn.onclick = function () {
+            var sum = 0;
+            for(var i = 0; i < 2; i++){
+                sum += parseInt(inputs[i].value);
+            }
+            res.innerHTML = sum;
+        }
+    }
+</script>
+</body>
+</html>

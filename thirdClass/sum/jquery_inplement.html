@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="text"> + <input type="text"> = <span id="res">?</span>
+<button>求和</button>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("input").keyup(function () {
+            this.value = this.value.replace(/[^(\d)]/,"");
+        });
+
+        $("button").click(function () {
+            var sum = 0;
+            $("input").each(function () {
+                sum += parseInt($(this).val());
+            })
+            $("#res").text(sum);
+        });
+    })
+</script>
+</body>
+</html>
