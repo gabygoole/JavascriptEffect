@@ -61,7 +61,7 @@
         }
         //全选/全不选
         $("input:eq(0)").click(function () {
-            $("input:gt(0)").prop("checked",this.checked);
+            $("input:gt(0)").prop("checked",this.checked);//用attr会出错
         });
         //反选
         $("a").click(function () {
