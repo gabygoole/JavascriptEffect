@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        b {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<b></b>
+<script>
+    window.onload = function () {
+        var boldEle = document.getElementsByTagName("b")[0];
+        var i = 0;
+        function autoIncrement() {
+            i++;
+            boldEle.innerHTML = i;
+        }
+        setInterval(autoIncrement,1000);
+    }
+</script>
+</body>
+</html>
