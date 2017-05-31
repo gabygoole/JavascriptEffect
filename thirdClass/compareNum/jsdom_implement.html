@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        input {
+            width: 50px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<input type="text"> vs <input type="text"> <button>最大的数是</button>
+<span id="res"></span>
+<script>
+    window.onload = function () {
+        var inputs = document.getElementsByTagName("input");
+        var res = document.getElementById("res");
+        var btn = document.getElementsByTagName("button")[0];
+
+        for(var i = 0; i < inputs.length; i++) {
+            inputs[i].onkeyup = function () {
+                this.value = this.value.replace(/[^(\d)]/,"");
+            }
+        }
+
+        btn.onclick = function () {
+            var preNum = parseInt(inputs[0].value);
+            var afterNum = parseInt(inputs[1].value);
+            res.innerHTML = preNum > afterNum ? preNum : afterNum;
+        };
+    }
+</script>
+</body>
+</html>
