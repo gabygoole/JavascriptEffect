@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<button value="0">0</button>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    $(function () {
+        $("button").click(function () {
+            var tmp = parseInt($(this).val()) + 1;
+            $(this).val(tmp)
+                .html(parseInt(tmp));
+            alert(this.value);
+        })
+    })
+</script>
+</body>
+</html>
