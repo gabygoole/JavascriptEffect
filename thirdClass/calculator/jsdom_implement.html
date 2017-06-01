@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        #outer {
+            width: 350px;
+            background: #999;
+            margin: 0 auto;
+            position: relative;
+        }
+        ul{
+            padding: 0;
+            overflow: auto;
+        }
+        li{
+            list-style-type: none;
+            float: left;
+            width: 24.7%;
+            text-align: center;
+            margin: 0 1px 1px 0;
+        }
+        .white-key:hover {
+            background-color: #cac8c8;
+        }
+        .red-key:hover {
+            background-color: #f38121;
+        }
+        input {
+            text-align: right;
+        }
+
+        input#now {
+            background-color: #999;
+            height: 100px;
+            width:92%;
+            border: none;
+            font-size: 80px;
+            color: #fbfbfb;
+            padding-top: 30px;
+        }
+        a {
+            display: block;
+            padding: 25px;
+            cursor: pointer;
+        }
+
+        #former {
+            position: absolute;
+            top: 2px;
+            right: 35px;
+            color: #fbfbfb;
+            font-size: 30px;
+            width: 240px;
+            background-color: #999;
+            border: none;
+        }
+
+        .white-key {
+            background-color: #d6d6d6;
+        }
+        .red-key {
+            background-color: #f5923e;
+            color: #fdfcfb;
+        }
+        .specific {
+            width: 49.4%;
+            margin-left: 1px;
+        }
+    </style>
+
+    <title>网页计算器</title>
+</head>
+<body>
+<div id="outer">
+    <input type="text" id="now" value="0" readonly="readonly">
+    <ul>
+        <li class="white-key"><a>AC</a></li>
+        <li class="white-key"><a>+/-</a></li>
+        <li class="white-key"><a>%</a></li>
+        <li class="red-key"><a>÷</a></li>
+        <li class="white-key"><a>7</a></li>
+        <li class="white-key"><a>8</a></li>
+        <li class="white-key"><a>9</a></li>
+        <li class="red-key"><a>×</a></li>
+        <li class="white-key"><a>4</a></li>
+        <li class="white-key"><a>5</a></li>
+        <li class="white-key"><a>6</a></li>
+        <li class="red-key"><a>-</a></li>
+        <li class="white-key"><a>1</a></li>
+        <li class="white-key"><a>2</a></li>
+        <li class="white-key"><a>3</a></li>
+        <li class="red-key"><a>+</a></li>
+        <li class="white-key specific"><a>0</a></li>
+        <li class="white-key"><a>.</a></li>
+        <li class="red-key"><a>=</a></li>
+    </ul>
+    <input type="text" id="former" value="" readonly="readonly">
+</div>
+<script>
+    window.onload = function () {
+        var former = document.getElementById("former");
+        var now = document.getElementById("now");
+        var aEle = document.getElementsByTagName("a");
+        var flag = false;
+
+        former.onfocus = now.onfocus = function () {
+            this.blur();
+        }
+        for(var i = 0; i < aEle.length; i++) {
+            aEle[i].onclick = function () {
+                switch (this.innerHTML){
+                    case "+" :
+                        calc("+");
+                        break;
+                    case "-" :
+                        calc("-");
+                        break;
+                    case "×" :
+                        calc("*");
+                        break;
+                    case "÷" :
+                        calc("/");
+                        break;
+                    case "=" :
+                        former.value += now.value;
+                        now.value = eval(former.value);
+                        flag = true;
+                        break;
+                    case "AC":
+                        now.value = "0";
+                        former.value = "";
+                        break;
+                    default :
+                        if(flag) {
+                            now.value = this.innerHTML;
+                            former.value = "";
+                            break;
+                        }
+                        now.value = (now.value + this.innerHTML).replace(/^[0\+\-\*\/](\d)/,"$1");
+                }
+            }
+        }
+        function calc(cha) {
+            if(flag) {
+                former.value = now.value + cha;
+                now.value = cha;
+                flag = false;
+            } else {
+                former.value += (now.value + cha);
+                now.value = cha;
+            }
+        }
+    }
+</script>
+</body>
+</html>
