@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #outer {
+            width: 300px;
+            background-color: dodgerblue;
+            margin: 0 auto;
+            padding: 30px 0;
+            text-align: center;
+        }
+        span {
+            display: inline-block;
+            background-color: white;
+            line-height: 30px;
+            width: 30px;
+            text-align: center;
+            height: 30px;
+            padding: 0 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <span>0</span>
+        点
+        <span>0</span>
+        分
+        <span>0</span>
+        秒
+    </div>
+<script>
+    window.onload = function () {
+        var spanEle = document.getElementsByTagName("span");
+        setInterval(getTimes, 1000);
+        getTimes();
+        function getTimes() {
+            var gDate = new Date();
+            var aDate = [gDate.getHours(),gDate.getMinutes(),gDate.getSeconds()];
+
+            for(var i = 0; i < 3; i++) {
+                spanEle[i].innerHTML = format(aDate[i]);
+            }
+        }
+        function format(str) {
+            return str.toString().replace(/^(\d)$/,"0$1");
+        }
+    }
+</script>
+</body>
+</html>
