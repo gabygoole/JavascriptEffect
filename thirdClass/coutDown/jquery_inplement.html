@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #outer {
+            width: 300px;
+            background-color: #2e3033;
+            margin: 0 auto;
+            padding: 30px 0;
+            text-align: center;
+            color: white;
+        }
+        span.item {
+            display: inline-block;
+            background-color: white;
+            line-height: 30px;
+            width: 30px;
+            text-align: center;
+            height: 30px;
+            padding: 0 12px;
+            margin-right: 6px;
+            color: black;
+        }
+        .timer-item {
+            position: relative;
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .plus,.sub {
+            position: absolute;
+            left: 30%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .plus {
+            top: -25px;
+        }
+        button {
+            background-color: green;
+            border-radius: 6px;
+            width: 140px;
+            height: 60px;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cancel {
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div class="timer-item">
+        <span class="item">0</span>时
+        <span class="plus">+</span>
+        <span class="sub">-</span>
+    </div>
+
+    <div class="timer-item">
+        <span class="item">0</span>分
+        <span class="plus">+</span>
+        <span class="sub">-</span>
+    </div>
+
+    <div class="timer-item">
+        <span class="item">0</span>秒
+        <span class="plus">+</span>
+        <span class="sub">-</span>
+    </div>
+</div>
+<div class="btn">
+    <button>开始</button>
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script>
+    window.onload = function () {
+        var items = document.getElementsByClassName("item");
+        var timer;
+        //让加减生效
+        $(".plus").click(function () {
+            $(this).prev().html((parseInt($(this).prev().html()) + 1).toString().replace(/^(\d)$/,"0$1"));
+        });
+        $(".sub").click(function () {
+            $(this).prev().prev().html((parseInt($(this).prev().prev().html()) - 1).toString().replace(/^(\d)$/,"0$1"));
+        });
+        //开始倒计时
+        $("button").click(function () {
+            typeof ($(this).attr("class")) == "undefined" ? (timer = setInterval(updateTime,1000),updateTime()) : clearInterval(timer);//注意这里不能是updateTime(),而是updateTime
+            typeof ($(this).attr("class")) == "undefined" ? ($(this).addClass("cancel"),$(this).html("取消")) : ($(this).removeClass("cancel"),$(this).html("启动"));
+        })
+
+        function updateTime() {
+            var remainSeconds = parseInt(items[0].innerHTML)*3600 + parseInt(items[1].innerHTML)*60 + parseInt(items[2].innerHTML);
+            if(remainSeconds == 0) {
+                clearInterval(timer);
+                $("button").removeClass("cancel")
+                    .html("启动");
+                return;
+            }
+            remainSeconds--;
+            items[0].innerHTML = parseInt(remainSeconds / 3600).toString().replace(/[^(\d)$]/,"0$1");
+            items[1].innerHTML = parseInt(remainSeconds % 3600 / 60).toString().replace(/[^(\d)$]/,"0$1");
+            items[2].innerHTML = parseInt(remainSeconds % 3600 % 60).toString().replace(/[^(\d)$]/,"0$1");
+        }
+    };
+</script>
+</body>
+</html>
