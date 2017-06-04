@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div#nav {
+            width: 910px;
+            margin: 0 auto;
+            position: relative;
+        }
+        ul {
+            background-color: #2e3033;
+            color: white;
+            padding: 0;
+            text-align: center;
+            overflow:hidden;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        ul,li {
+            margin: 0;
+        }
+        li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 10px 15px;
+        }
+        .subnav {
+            display: none;
+            position: absolute;
+            top: 50px;
+            background-color: #2e3033;
+            min-width: 350px;
+        }
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-width: 6px;
+            border-color: transparent transparent #2e3033;
+            border-style: solid;
+            display: block;
+            top: -12px;
+        }
+        .subnav > div {
+            padding: 5px 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li>
+            <a href="#">站长之家</a>
+        </li>
+        <li>
+            <a href="#">站长之家</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">业界动态</a>|
+                    <a href="#">收购融资</a>|
+                    <a href="#">门户动态</a>|
+                    <a href="#">搜索引擎</a>|
+                    <a href="#">网络游戏</a>|
+                    <a href="#">电子商务</a>|
+                    <a href="#">广告传媒</a>|
+                    <a href="#">厂商开发</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">站长在线</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">站长报道</a>|
+                    <a href="#">好站推荐</a>|
+                    <a href="#">站长聚会</a>|
+                    <a href="#">站长访谈</a>|
+                    <a href="#">站长茶馆</a>|
+                    <a href="#">网站排行</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">网页运营</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">建站经验</a>|
+                    <a href="#">策划盈利</a>|
+                    <a href="#">搜索优化</a>|
+                    <a href="#">网站推广</a>|
+                    <a href="#">免费资源</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+        <a href="#">设计在线</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">酷站推荐</a>|
+                    <a href="#">网页设计</a>|
+                    <a href="#">WEB标准</a>|
+                    <a href="#">视频处理</a>|
+                    <a href="#">设计活动</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">网络编程</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">Asp编程</a>|
+                    <a href="#">Php编程</a>|
+                    <a href="#">.Net编程</a>|
+                    <a href="#">Xml编程</a>|
+                    <a href="#">Access</a>|
+                    <a href="#">Mssql</a>|
+                    <a href="#">Mysql</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">联盟资讯</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">联盟动态</a>|
+                    <a href="#">联盟介绍</a>|
+                    <a href="#">联盟点评</a>|
+                    <a href="#">网赚技巧</a>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <a href="#">服务器</a>
+            <div class="subnav">
+                <span class="arrow"></span>
+                <div>
+                    <a href="#">Web服务器</a>|
+                    <a href="#">Ftp服务器</a>|
+                    <a href="#">Mail服务器</a>|
+                    <a href="#">Dns服务器</a>|
+                    <a href="#">Win服务器</a>|
+                    <a href="#">Linux服务器</a>|
+                    <a href="#">安全防护</a>|
+                    <a href="#">虚拟主机</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    var get = {
+        byId: function (id) {
+            return document.getElementById(id);
+        },
+        byClass: function (className,parentEle) {
+            var resArray = [];
+            var pattern = new RegExp("(^| )" + className + "( |$)");
+            var allElem = this.byTagName("*",parentEle);
+            for(var i = 0; i < allElem.length; i++) {
+                pattern.test(allElem[i].className) && resArray.push(allElem[i]);
+            }
+            return resArray;
+        },
+        byTagName: function (elem,obj) {
+            return (obj || document).getElementsByTagName(elem);
+        }
+    };
+    window.onload = function () {
+        var nav = get.byId("nav");
+        var subNav = get.byClass("subnav",nav);
+        var allLi = get.byTagName("li",nav);
+        var onSubNav = onEm = timer = null;
+        for(var i = 1; i < allLi.length; i++) {
+            allLi[i].onmouseover = function () {
+                for(var j = 0; j < subNav.length; j++) subNav[j].style.display = "none";
+                onSubNav = get.byClass("subnav",this)[0];
+                onEm = get.byClass("arrow",this)[0];
+                onSubNav.style.display = "block";
+                clearTimeout(timer);
+                if(nav.offsetWidth - this.offsetLeft > onSubNav.offsetWidth){
+                	onSubNav.style.left = this.offsetLeft + "px";
+                } else {
+                    onSubNav.style.right = 0;                	
+                }
+                onEm.style.left = this.offsetLeft - onSubNav.offsetLeft + 50 + "px";
+                onSubNav.onmouseover = function (event) {
+                	event.stopPropagation();
+                    clearTimeout(timer);
+                }
+            }
+
+            allLi[i].onmouseout = function () {
+                timer = setTimeout(function () {
+                    onSubNav.style.display = "none";
+                },300);
+            }
+        }
+    }
+</script>
+</body>
+</html>
