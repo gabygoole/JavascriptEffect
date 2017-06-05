@@ -166,18 +166,20 @@
 </div>
 <script src="../../jquery-3.1.1.min.js"></script>
 <script>
-    /*用mouseover和mouseout会出错*/
+
     $(function () {
         var timer = null;
         $nav = $("div#nav");
         $("li:gt(0)").mouseenter(function () {
+            $(".subnav").css("display","none");
             $subnav = $(this).find(".subnav");
             $subnav.css("display","block");
             $nav[0].offsetWidth - this.offsetLeft > $subnav[0].offsetWidth || $subnav.css("right",0);
             $(this).find(".arrow").css("left",$(this)[0].offsetLeft - $subnav[0].offsetLeft + 50 + "px");
-            $subnav.mouseover(function () {
+            clearTimeout(timer);
+            $subnav.mouseenter(function () {
                 clearTimeout(timer);
-            })
+            });
         }).mouseleave(function () {
             $subnav = $(this).find(".subnav");
             timer =  setTimeout(function () {
