@@ -200,8 +200,7 @@
                     onSubNav.style.right = 0;                	
                 }
                 onEm.style.left = this.offsetLeft - onSubNav.offsetLeft + 50 + "px";
-                onSubNav.onmouseover = function (event) {
-                	event.stopPropagation();
+                onSubNav.onmouseover = function () {
                     clearTimeout(timer);
                 }
             }
