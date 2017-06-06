@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自动播放——幻灯片效果</title>
+    <style>
+        #box {
+            width: 445px;
+            margin: 0 auto;
+            position: relative;
+        }
+        ul,li {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        #imgs{
+            position: relative;
+        }
+        #imgs li {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #imgs img {
+            width: 440px;
+            height: 220px;
+        }
+        #numbers {
+            position: absolute;
+            right: 15px;
+            top: 190px;
+        }
+        #numbers li{
+            display: inline-block;
+            background-color: #F90;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            color: rgb(232, 227, 227);
+            text-align: center;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        #numbers .current {
+            color: white;
+            background-color: #f60;
+        }
+        #imgs li {
+            opacity: 0;
+        }
+        #imgs .current {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="imgs">
+            <li class="current"><img src="01.jpg" alt="01.jpg"></li>
+            <li><img src="02.jpg" alt="02.jpg"></li>
+            <li><img src="03.jpg" alt="03.jpg"></li>
+            <li><img src="04.jpg" alt="04.jpg"></li>
+            <li><img src="05.jpg" alt="05.jpg"></li>
+        </ul>
+        <ul id="numbers">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+<script type="text/javascript">
+    window.onload = function () {
+        var numList = document.getElementById("numbers").getElementsByTagName("li");
+        var imgList = document.getElementById("imgs").getElementsByTagName("li");
+        var containBox = document.getElementById("box");
+        var index = 0;
+        var timer = play = null;
+
+        for (var i = 0 ; i < numList.length; i++) {
+            numList[i].index = i;
+            numList[i].onmouseover = function () {
+                clearInterval(timer);
+                show(this.index);
+            };
+        }
+        function show(a) {
+            index = a;
+            var opacity = 0;
+            for(var i = 0; i < imgList.length; i++) {
+                imgList[i].style.opacity = 0;
+            }
+            for(var i = 0; i < numList.length; i++) numList[i].className = "";
+            numList[index].className = "current";
+            timer = setInterval(function () {
+                opacity += 2;
+                imgList[index].style.opacity = opacity/100;
+                opacity == 100 && clearTimeout(timer);
+            },20);
+        }
+        
+        function autoPlay() {
+            play = setInterval(function () {
+                /*
+                index++;
+                show(index);
+                index == imgList.length - 1 && (index = -1);
+                为什么上面这三行就不对？下面这三行就是对的
+                */
+                index++;
+                index == imgList.length && (index = 0);
+                show(index);
+            },2000);
+    }
+        autoPlay();
+
+        containBox.onmouseover = function () {
+            clearInterval(play);
+        }
+
+        containBox.onmouseout = function () {
+            autoPlay();
+        }
+    }
+</script>
+</body>
+</html>

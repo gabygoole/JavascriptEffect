@@ -193,11 +193,11 @@
                 onSubNav = get.byClass("subnav",this)[0];
                 onEm = get.byClass("arrow",this)[0];
                 onSubNav.style.display = "block";
-                clearTimeout(timer);
+                clearTimeout(timer);//为什么少了这一行就不对了？
                 if(nav.offsetWidth - this.offsetLeft > onSubNav.offsetWidth){
                 	onSubNav.style.left = this.offsetLeft + "px";
                 } else {
-                    onSubNav.style.right = 0;                	
+                    onSubNav.style.right = 0;
                 }
                 onEm.style.left = this.offsetLeft - onSubNav.offsetLeft + 50 + "px";
                 onSubNav.onmouseover = function () {
