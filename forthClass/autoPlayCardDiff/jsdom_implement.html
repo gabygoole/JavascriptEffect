@@ -58,11 +58,11 @@
 <body>
     <div id="box">
         <ul id="imgs">
-            <li class="current"><img src="01.jpg" alt="01.jpg"></li>
-            <li><img src="02.jpg" alt="02.jpg"></li>
-            <li><img src="03.jpg" alt="03.jpg"></li>
-            <li><img src="04.jpg" alt="04.jpg"></li>
-            <li><img src="05.jpg" alt="05.jpg"></li>
+            <li class="current"><img src="../autoPlayCard/01.jpg" alt="01.jpg"></li>
+            <li><img src="../autoPlayCard/02.jpg" alt="02.jpg"></li>
+            <li><img src="../autoPlayCard/03.jpg" alt="03.jpg"></li>
+            <li><img src="../autoPlayCard/04.jpg" alt="04.jpg"></li>
+            <li><img src="../autoPlayCard/05.jpg" alt="05.jpg"></li>
         </ul>
         <ul id="numbers">
             <li class="current">1</li>
@@ -79,6 +79,7 @@
         var containBox = document.getElementById("box");
         var index = 0;
         var timer = play = null;
+        var flag = true;
 
         for (var i = 0 ; i < numList.length; i++) {
             numList[i].index = i;
@@ -105,17 +106,12 @@
         
         function autoPlay() {
             play = setInterval(function () {
-                /*
-                index++;
-                show(index);
-                index == imgList.length - 1 && (index = -1);
-                为什么上面这三行就不对？下面这三行就是对的
-                */
-                index++;
-                index == imgList.length && (index = 0);
+                flag ? index++ : index--;
+                index == imgList.length && (index = imgList.length - 2 , flag = false);
+                index <= 0 && (flag = true,index = 1);
                 show(index);
             },2000);
-    }
+        }
         autoPlay();
 
         containBox.onmouseover = function () {

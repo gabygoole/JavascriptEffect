@@ -58,11 +58,11 @@
 <body>
 <div id="box">
     <ul id="imgs">
-        <li class="current"><img src="01.jpg" alt="01.jpg"></li>
-        <li><img src="02.jpg" alt="02.jpg"></li>
-        <li><img src="03.jpg" alt="03.jpg"></li>
-        <li><img src="04.jpg" alt="04.jpg"></li>
-        <li><img src="05.jpg" alt="05.jpg"></li>
+        <li class="current"><img src="../autoPlayCard/01.jpg" alt="01.jpg"></li>
+        <li><img src="../autoPlayCard/02.jpg" alt="02.jpg"></li>
+        <li><img src="../autoPlayCard/03.jpg" alt="03.jpg"></li>
+        <li><img src="../autoPlayCard/04.jpg" alt="04.jpg"></li>
+        <li><img src="../autoPlayCard/05.jpg" alt="05.jpg"></li>
     </ul>
     <ul id="numbers">
         <li class="current">1</li>
@@ -77,19 +77,21 @@
     $(function () {
         var index = 0;
         var timer = play = null;
+        var flag = true;
+
         $("#numbers > li").mouseenter(function () {
             var orderIndex = $(this).index();
-            clearInterval(timer);
+//            clearInterval(timer); 为什么这里不能有
             show(orderIndex);
         });
 
         function show(a) {
             index = a;
             var opacity = 0;
+            clearInterval(timer);//为什么这一句放在mouseenter里面，切换浏览器标签页再回来会闪？
             $("#imgs > li").css("opacity",0);
             $("#numbers > li").eq(index).siblings().removeClass("current").end()
                 .addClass("current");
-            clearInterval(timer);
             timer = setInterval(function () {
                 opacity += 2;
                 $("#imgs > li").eq(index).css("opacity",opacity/100);
@@ -99,10 +101,11 @@
 
         function autoPlay() {
             play = setInterval(function () {
-                index++;
-                index == $("#imgs > li").length && (index = 0);
+                flag ? index++ : index--;
+                index == $("#imgs > li").length && (index = $("#imgs > li").length - 2 , flag = false);
+                index <= 0 && (flag = true,index = 1);
                 show(index);
-            },2000)
+            }, 2000);
         }
         autoPlay();
 
