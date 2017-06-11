@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>css函数——设置/读取对象的属性</title>
+    <style>
+        .inputSty {
+            background-color: orangered;
+            border:none;
+            color: white;
+        }
+        div {
+            width: 400px;
+            margin:0 auto;
+            height: 200px;
+            background-color: #fef4eb;
+            border: 1px solid #f60;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="button" class="inputSty" value="获取样式">
+    <input type="button" class="inputSty" value="设置样式">
+    <input type="button" class="inputSty" value="默认样式">
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    function css($obj,attr,value) {
+        switch (arguments.length) {
+            case 2:
+                if(typeof arguments[1] == "object"){
+                    for(var name in attr) {
+                        $obj.css(name,attr[name]);
+                    }
+                } else {
+                    return $obj.css(attr);
+                }
+                break;
+            case 3:
+                $obj.css(attr,value);
+        }
+    }
+$(function () {
+    var $box = $("div");
+    var $inputs = $(".inputSty");
+    $inputs.eq(0).click(function () {
+        alert("backgroundColor:" + css($box,"backgroundColor") + "\nwidth:" + css($box,"width") + "\nbackground-color:" +css($box,"background-color"));
+    });
+
+    $inputs.eq(1).click(function () {
+        css($box,{borderColor: "rgb(0, 132, 255)",backgroundColor: "rgb(239, 248, 255"});
+        $inputs.css("backgroundColor","rgb(0, 132, 255)");
+    });
+
+    $inputs.eq(2).click(function () {
+        css($box,{borderColor: "#f60",backgroundColor: "#fef4eb"});
+        $inputs.css("backgroundColor","orangered");
+    });
+});
+
+</script>
+</body>
+</html>
