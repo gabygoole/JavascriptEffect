@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>高亮输入框</title>
+    <style>
+        form {
+            border: 2px solid #f60;
+            width: 400px;
+            margin: 0 auto;
+            background-color: #fef4eb;
+        }
+        h3 {
+            border-bottom: 2px solid #f60;
+            color: #fe791e;
+            margin: 0;
+            background-color: #ffebd7;
+            padding: 5px 0 5px 5px;
+        }
+        p {
+            text-align: center;
+            line-height: 31px;
+        }
+        .f-text {
+            width: 224px;
+            height: 31px;
+            font-size: 18px;
+            margin: 0;
+            background-color: #fffdec;
+            padding: 0 0 0 5px;
+        }
+        .f-button {
+            color: white;
+            width: 104px;
+            height: 31px;
+            background: #f60;
+            border-radius: 3px;
+            border: none;
+        }
+        label {
+            width: 100px;
+            text-align: right;
+            float: left;
+        }
+        .f-text-high{
+            background-color: #ffe7e7;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <h3>用户登录</h3>
+    <p>
+        <label for="username">用户名:</label>
+        <input type="text" id="username" class="f-text">
+    </p>
+    <p>
+        <label for="psword">密码:</label>
+        <input type="text" id="psword" class="f-text">
+    </p>
+    <p><input type="button" value="登录" class="f-button"></p>
+</form>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input.f-text").focus(function () {
+            $(this).addClass("f-text-high");
+        }).blur(function () {
+            $(this).removeClass("f-text-high");
+        });
+    })
+</script>
+</body>
+</html>
