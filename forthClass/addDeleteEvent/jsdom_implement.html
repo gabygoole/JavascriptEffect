@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自动播放——幻灯片效果</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<input type="button" value="毫无用处的按钮">
+<input type="button" value="绑定click">
+<input type="button" value="解除绑定">
+<script type="text/javascript">
+    var eventSet = {
+        addHandler: function (element,event,handler) {
+            element.addEventListener ? element.addEventListener(event,handler,false) : element.attachEvent("on" + event,handler);
+        },
+        removeHandler: function (element,event,handler) {
+            element.removeEventListener ? element.removeEventListener(event,handler,false) : element.detachEvent("on" + event,handler);
+        },
+        addLoadHandler: function (handler) {
+            this.addHandler(window,"load",handler);
+        }
+    };
+    eventSet.addLoadHandler(function () {
+        var btns = document.getElementsByTagName("input");
+        eventSet.addHandler(btns[1],"click",function () {
+            eventSet.addHandler(btns[0],"click",handler);
+            btns[0].value = "现在可以点击了";
+        });
+        eventSet.addHandler(btns[2],"click",function () {
+            eventSet.removeHandler(btns[0],"click",handler);
+            btns[0].value = "毫无用处的按钮";
+        });
+        function handler() {
+            alert("事件绑定成功");
+        }
+    })
+</script>
+</body>
+</html>
