@@ -21,6 +21,7 @@
             width: 24px;
             height: 24px;
             background: url("empty.png");
+            cursor: pointer;
         }
         ul,span,li {
             float: left;
@@ -111,6 +112,7 @@
         }).mouseleave(function () {
             $resP.css("display","none");
             $angle.css("display","none");
+            lightStar();
         }).click(function () {
             lastRes = $(this).index();
             lightStar(lastRes);
