@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+<p></p>
+<script type="text/javascript">
+    window.onload = function () {
+        document.oncontextmenu = function () {
+            return false;//阻止默认行为
+        };//给document对象绑定onclick、oncontextmenu，就算表示给整个文档对象，即浏览器显示区域绑定事件了
+    }
+</script>
+</body>
+</html>
