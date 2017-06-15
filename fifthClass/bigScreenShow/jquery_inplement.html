@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>大屏展示</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        ul {
+            width: 788px;
+            margin: 20px auto;
+            padding: 0;
+        }
+        li {
+            margin: 0 10px;
+            list-style-type: none;
+            display: inline-block;
+            height: 170px;
+            width: 170px;
+            border: 1px solid #ddd;
+        }
+        .hover {
+            border-color: #a10000;
+        }
+        #big-screen {
+            position: absolute;
+            background: url("wait.gif") no-repeat 149px 149px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #dddddd;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="shirt_1.jpg" alt=""></li>
+    <li><img src="shirt_2.jpg" alt=""></li>
+    <li><img src="shirt_3.jpg" alt=""></li>
+    <li><img src="shirt_4.jpg" alt=""></li>
+</ul>
+<div id="big-screen">
+    <img src="" alt="">
+</div>
+<script src="../../jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var iWidth = document.documentElement.offsetWidth ;
+//        var lastWidth = $("li:last-child").get(0).offsetLeft;
+        $("li").mouseenter(function () {
+            $(this).addClass("hover");
+            var src = $(this).children().attr("src");
+            $("#big-screen").css("display", "block")
+                .children().attr("src", src.replace(/(shirt_\d)/, "$1"+"_big"));
+        }).mouseleave(function () {
+            $(this).removeClass("hover");
+            $("#big-screen").removeAttr("style");
+            $("#big-screen").css("display","none");
+        }).mousemove(function (e) {
+            var e = e || window.event;
+            if(e.clientX + 442 >=  iWidth) {//投机式的办法，但是讲道理应该找出#big-screen到浏览器左边缘的距离
+                $("#big-screen").css("right", iWidth - e.clientX + 20 + "px");
+            }
+            else {
+                $("#big-screen").css("left",e.clientX + 20 + "px");
+            }
+            $("#big-screen").css("top",e.clientY + 20 + "px");
+        });
+    });
+</script>
+</body>
+</html>
