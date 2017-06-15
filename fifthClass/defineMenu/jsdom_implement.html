@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>模拟select控件</title>
+    <style>
+        body {
+            line-height: 24px;
+        }
+        ul,li {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            position: absolute;
+            width: 100px;
+            padding: 2px;
+            border: 1px solid #e6e6e6;
+            display: none;
+        }
+        li {
+            position: relative;
+            list-style-type: none;
+            height: 24px;
+            padding-left: 24px;
+        }
+        em {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            left: 0;
+            background: url("ico.png") no-repeat;
+        }
+        em.copy {
+            background-position: 0 -24px;
+        }
+        em.paste {
+            background-position: 0 -48px;
+        }
+        a {
+            text-decoration: none;
+            background-color: white;
+            font-size: 12px;
+            color: #000;
+            background-color: white;
+            display: block;
+            padding-left: 10px;
+        }
+        li {
+            background-color: #ff9632;
+        }
+        .hover {
+            background-color: rgba(128, 128, 128, 0.73);
+        }
+        .hover a {
+            background-color: grey;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+自定义右键菜单，请点击页面右键查看效果
+<ul>
+    <li>
+        <!--float和absolute会隐式改变display为？-->
+        <em class="cut"></em>
+        <a href="#">剪切</a>
+    </li>
+    <li>
+        <em class="copy"></em>
+        <a href="#">复制</a>
+    </li>
+    <li>
+        <em class="paste"></em>
+        <a href="#">粘贴</a>
+    </li>
+</ul>
+<script type="text/javascript">
+    window.onload = function () {
+        var oUl = document.getElementsByTagName("ul")[0];
+        var oLi = document.getElementsByTagName("li");
+        for (var i = 0; i < oLi.length; i++) {
+            oLi[i].onmouseover = function () {
+                this.className = "hover";
+            }
+            oLi[i].onmouseout = function () {
+                this.className = "";
+            }
+        }
+        document.oncontextmenu = function (e) {
+            var e = e || window.event;
+            //这里ul相对于body绝对定位，而margin也算是body的一部分
+            // 所以如果设置ul的top、left均为0，那么ul会以包含margin在内的整个body盒子为对象定位
+            oUl.style.display = "block";
+            oUl.style.top = e.clientY + "px";
+            oUl.style.left = e.clientX + "px";
+            return false;
+        }
+        document.onclick = function () {
+            oUl.style.display = "none";
+        }
+    };
+</script>
+</body>
+</html>
